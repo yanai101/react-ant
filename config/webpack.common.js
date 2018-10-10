@@ -43,7 +43,14 @@ module.exports = {
                 test: /((\.jsx?)|(\.js))$/,
                 exclude: /(node_modules|bower_components)/,
                 use: [
-                    'babel-loader',
+                     {
+                    loader : "babel-loader",
+                    options:{
+                        plugins: [
+                            ['import', { libraryName: "antd", libraryDirectory: "es" ,style: "css" }] //style: true  --> for less 
+                        ]
+                    }
+                    },
                     {
                     loader: 'awesome-typescript-loader',
                     options: {
