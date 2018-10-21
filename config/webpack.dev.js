@@ -3,7 +3,7 @@ const configPath = require('./paths.config');
 
 const HotModuleReplacementPlugin = webpack.HotModuleReplacementPlugin;
 const NamedModulesPlugin = webpack.NamedModulesPlugin;
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CssExtractPlugin = require("extract-css-chunks-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
@@ -50,10 +50,15 @@ const config = {
         }),
         new NamedModulesPlugin(),
         new HotModuleReplacementPlugin(),
-        new ExtractTextPlugin({
-            filename: "style.css",
-            allChunks: true,
-            disable: true
+        new CssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css",
+            hot: true, // optional as the plugin cannot automatically detect if you are using HOT, not for production use
+            orderWarning: true, // Disable to remove warnings about conflicting order between imports
+            reloadAll: true, // when desperation kicks in - this is a brute force HMR flag
+            cssModules: true // if you use cssModules, this can help.
         }),
         new webpack.DefinePlugin({ 'process.env.API_URL': JSON.stringify('http://DEV:8000' ) })
     ]

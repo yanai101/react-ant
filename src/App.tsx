@@ -6,8 +6,7 @@ import scssCls from './app.scss';
 import './main.global.scss';
 import Header from "./components/heder";
 import { DatePicker ,  Timeline, Icon , Radio  } from 'antd';
-// import 'antd/dist/antd.css';
-// import 'antd/dist/antd.css';
+
 const RadioGroup = Radio.Group;
 
 class App extends Component {
